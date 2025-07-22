@@ -19,7 +19,7 @@ VS Code extension for Burp Suite Extension development. Built for security dev a
 ## Installation
 
 ### Option 1: Direct Download
-Download the latest release: [bxeditor-1.0.0.vsix](https://github.com/thecybersandeep/bxeditor/releases/download/1.1/bxeditor-1.0.0.vsix)
+Download the latest release: [bxeditor-1.0.0.vsix](https://github.com/thecybersandeep/bxeditor/releases/download/1.0.1/bxeditor-1.0.1.vsix)
 
 Install in VS Code:
 ```
