@@ -18,9 +18,6 @@ node_modules/**
 **/.DS_Store
 Thumbs.db
 ._*
-**/.claude/
-**/.claude/**
-.claude
 scripts/**
 webpack.config.js
 # Include examples and API documentation
