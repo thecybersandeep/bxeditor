@@ -1,0 +1,199 @@
+{
+  "name": "bxeditor",
+  "displayName": "Burpsuite Extension Editor",
+  "description": "Complete development environment for Burp Suite Montoya API extensions with IntelliSense, debugging, and code browsing",
+  "version": "1.0.0",
+  "publisher": "sandeep-wawdane",
+  "author": {
+    "name": "Sandeep Wawdane"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Debuggers",
+    "Other"
+  ],
+  "keywords": [
+    "burp",
+    "burp-suite",
+    "montoya",
+    "security",
+    "penetration-testing",
+    "java",
+    "extension-development"
+  ],
+  "activationEvents": [
+    "onLanguage:java",
+    "onCommand:bxeditor.createProject",
+    "onCommand:bxeditor.generateExtension"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "java",
+        "extensions": [".java"],
+        "aliases": ["Java", "java"]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "java",
+        "scopeName": "source.java.burp",
+        "path": "./syntaxes/java-burp.tmGrammar.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "java",
+        "path": "./snippets/burp-montoya.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "bxeditor.createProject",
+        "title": "Create New Burp Extension Project",
+        "category": "BXEditor"
+      },
+      {
+        "command": "bxeditor.generateExtension",
+        "title": "Generate Extension Template",
+        "category": "BXEditor"
+      },
+      {
+        "command": "bxeditor.openDocumentation",
+        "title": "Open Montoya API Documentation",
+        "category": "BXEditor"
+      },
+      {
+        "command": "bxeditor.showExamples",
+        "title": "Show Extension Examples",
+        "category": "BXEditor"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "bxeditor.createProject",
+          "group": "bxeditor@1"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "bxeditor.generateExtension",
+          "when": "resourceExtname == .java",
+          "group": "bxeditor@1"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "bxeditor.createProject"
+        },
+        {
+          "command": "bxeditor.generateExtension"
+        },
+        {
+          "command": "bxeditor.openDocumentation"
+        },
+        {
+          "command": "bxeditor.showExamples"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "BXEditor",
+      "properties": {
+        "bxeditor.montoyaApiVersion": {
+          "type": "string",
+          "default": "2025.7",
+          "description": "Default Montoya API version to use in new projects"
+        },
+        "bxeditor.javaVersion": {
+          "type": "string",
+          "default": "17",
+          "description": "Java version for Burp extensions"
+        },
+        "bxeditor.enableAutoCompletion": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable enhanced auto-completion for Montoya API"
+        },
+        "bxeditor.showInlineDocumentation": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show inline documentation on hover"
+        },
+        "bxeditor.defaultPackageName": {
+          "type": "string",
+          "default": "com.example.burp",
+          "description": "Default package name for new extensions"
+        }
+      }
+    },
+    "taskDefinitions": [
+      {
+        "type": "burp-build",
+        "required": ["task"],
+        "properties": {
+          "task": {
+            "type": "string",
+            "description": "The Gradle task to execute"
+          }
+        }
+      }
+    ],
+    "problemMatchers": [
+      {
+        "name": "burp-gradle",
+        "owner": "bxeditor",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": {
+          "regexp": "^(.*):(\\d+):\\s+(warning|error):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "severity": 3,
+          "message": 4
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "@types/mocha": "^10.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vscode/test-electron": "^2.3.0",
+    "eslint": "^8.28.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "ts-loader": "^9.4.3",
+    "typescript": "^4.9.4",
+    "webpack": "^5.82.1",
+    "webpack-cli": "^5.1.1"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bxeditor/bxeditor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bxeditor/bxeditor/issues"
+  },
+  "homepage": "https://github.com/bxeditor/bxeditor#readme",
+  "license": "MIT"
+}

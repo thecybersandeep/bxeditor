@@ -1,0 +1,24 @@
+.vscode/**
+.vscode-test/**
+src/**
+!src/realApiKnowledgeBase.ts
+.gitignore
+.yarnrc
+vsc-extension-quickstart.md
+**/tsconfig.json
+**/.eslintrc.json
+**/*.map
+**/*.ts
+**/test/**
+src/test/**
+out/test/**
+node_modules/**
+*.vsix
+.DS_Store
+Thumbs.db
+scripts/**
+webpack.config.js
+# Include examples and API documentation
+!examples/**
+!api-docs/**
+!api-source/**

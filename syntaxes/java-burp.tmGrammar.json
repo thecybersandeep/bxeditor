@@ -1,0 +1,42 @@
+{
+  "name": "java-burp",
+  "scopeName": "source.java.burp",
+  "fileTypes": ["java"],
+  "patterns": [
+    {
+      "include": "source.java"
+    },
+    {
+      "name": "support.class.burp.api",
+      "match": "\\b(BurpExtension|MontoyaApi|HttpHandler|ProxyRequestHandler|ProxyResponseHandler|ScanCheck|ContextMenuItemsProvider)\\b"
+    },
+    {
+      "name": "support.function.burp.api",
+      "match": "\\b(initialize|handleHttpRequestToBeSent|handleHttpResponseReceived|handleRequestReceived|handleRequestToBeSent|handleResponseReceived|handleResponseToBeSent|audit|provideMenuItems)\\b"
+    },
+    {
+      "name": "support.constant.burp.api",
+      "match": "\\b(RequestToBeSentAction|ResponseReceivedAction|ProxyRequestReceivedAction|ProxyRequestToBeSentAction|ProxyResponseReceivedAction|ProxyResponseToBeSentAction)\\b"
+    },
+    {
+      "name": "entity.name.type.burp.api",
+      "match": "\\bburp\\.api\\.montoya\\.[a-zA-Z0-9.]*\\b"
+    },
+    {
+      "begin": "\\bapi\\.",
+      "end": "(?=\\s*[;})])",
+      "name": "meta.function-call.burp.api",
+      "patterns": [
+        {
+          "name": "support.function.burp.api.method",
+          "match": "\\b(extension|http|proxy|scanner|userInterface|logging|utilities|persistence|scope|siteMap|collaborator|ai|bambda|burpSuite|comparer|decoder|intruder|organizer|project|repeater|websockets)\\b"
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.double.burp.api.professional",
+      "match": "(?i)\\b(professional|pro)\\b.*only",
+      "comment": "Highlight Professional-only features"
+    }
+  ]
+}
